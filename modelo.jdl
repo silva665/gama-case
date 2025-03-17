@@ -1,0 +1,29 @@
+entity Aluno {
+  nome String required
+}
+
+entity Meta {
+  valor Integer min(0) max(1000) required
+  area AreaDoEnem required
+}
+
+enum AreaDoEnem {
+  LINGUAGENS,
+  CIENCIAS_HUMANAS,
+  CIENCIAS_NATUREZA,
+  MATEMATICA
+}
+
+relationship OneToMany {
+  Aluno{meta} to Meta{aluno}
+}
+
+// Configurações adicionais
+dto Aluno with mapstruct
+dto Meta with mapstruct
+
+service Aluno with serviceClass
+service Meta with serviceClass
+
+paginate Aluno with pagination
+paginate Meta with pagination
